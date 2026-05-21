@@ -41,7 +41,9 @@ def generar_reportes(datos_estudiantes, ruta_json_perfiles, ruta_plantilla, carp
 
             doc.render(contexto)
             nombre_est = estudiante['nombres'].replace(' ', '_').strip()
-            nombre_base = f"Informe_{nombre_est}"
+            apellido_est = estudiante.get('apellidos', '').replace(' ', '_').strip()
+            identificacion_est = estudiante.get('identificacion', '').strip()
+            nombre_base = f"Informe_{nombre_est}_{apellido_est}_{identificacion_est}"
             ruta_docx = os.path.join(carpeta_salida, f"{nombre_base}.docx")
             doc.save(ruta_docx)
 
